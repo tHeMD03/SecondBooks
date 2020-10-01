@@ -1,13 +1,3 @@
-<?php
-	if(isset($_POST['submit'])){
-		if($_POST['email'] == "asd@gmail.com" && $_POST['password'] == "password")
-			header("Location:index.php");
-		else
-		heaader("Location:login.php");
-		exit;
-	}
-?>
-
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
