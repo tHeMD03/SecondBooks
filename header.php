@@ -22,42 +22,27 @@
 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="category.php">Category</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="category.php">Shop Category</a></li>
-									<li class="nav-item"><a class="nav-link" href="single-product.php">Product Details</a></li>
-									<li class="nav-item"><a class="nav-link" href="checkout.php">Product Checkout</a></li>
+									<!-- <li class="nav-item"><a class="nav-link" href="single-product.php">Product Details</a></li> -->
+									<li class="nav-item"><a class="nav-link" href="checkout.php">Checkout</a></li>
 									<li class="nav-item"><a class="nav-link" href="cart.php">Shopping Cart</a></li>
 									<li class="nav-item"><a class="nav-link" href="confirmation.php">Confirmation</a></li>
 									<li class="nav-item"><a class="nav-link" href="tracking.php">Tracking</a></li>
 								</ul>
 							</li>
-							<!-- <li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Blog</a> -->
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-									<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-								</ul>
-							</l>
-							
-								 
-						    
-								<ul class="dropdown-menu">
-									
-									<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-								</ul>
-							</li>
-							<li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
+							<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+							<!-- <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Account</a>
-								 <ul class="dropdown-menu">
+								 aria-expanded="false">Login</a> -->
+								 <!-- <ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" href="sign_up.php">Sign up</a></li>
 									<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
-								</ul>
+								</ul> -->
 							
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
