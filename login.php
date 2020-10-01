@@ -65,21 +65,15 @@
 						</div>
 					</div>
 				</div>
-
-				
 				<div class="col-lg-6">
 					<div class="login_form_inner">
 						<h3>Log in to enter</h3>
-						<form class="row login_form" action="login.php" method="post" id="contactForm" novalidate="novalidate">
+						<form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
 							<div class="col-md-12 form-group">
-<<<<<<< HEAD
-								<input type="email" class="form-control" id="name" name="email" value="<?php if (isset($_POST['email'])) { $uemail = $_POST['email']} ?>" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'">
-=======
-								<input type="email" class="form-control" id="name" name="email" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'" >
->>>>>>> master
+								<input type="email" class="form-control" id="name" name="email" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="password" class="form-control" id="name" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="text" class="form-control" id="name" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
@@ -88,7 +82,7 @@
 								</div>
 							</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" name="submit" class="primary-btn">Log In</button>
+								<button type="submit" value="submit" class="primary-btn">Log In</button>
 								<a href="forgot_password.php">Forgot Password?</a>
 							</div>
 						</form>
