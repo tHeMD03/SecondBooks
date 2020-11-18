@@ -24,6 +24,10 @@
 			background-image: linear-gradient(270deg,#ff4000, #ffe600);
 		}
 
+		table{
+			margin-left: 20px;
+		}
+
 		th, td{
 			color: black;
 			padding: 5px 5px;
