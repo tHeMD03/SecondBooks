@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
-<?php
-
-
-?>
-
 <head>
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -245,7 +240,7 @@
 									</div>
 									<div class="prd-bottom">
 
-										<a href="" class="social-info">
+										<a href="add_cart.php?book_id='.$row["book_id"].'" class="social-info">
 											<span class="ti-bag"></span>
 											<p class="hover-text">add to bag</p>
 										</a>
@@ -257,7 +252,7 @@
 											<span class="lnr lnr-sync"></span>
 											<p class="hover-text">compare</p>
 										</a> -->
-										<a href="single-product.php" class="social-info">
+										<a href="single-product.php?book_id='.$row["book_id"].'" class="social-info">
 											<span class="lnr lnr-move"></span>
 											<p class="hover-text">view more</p>
 										</a>

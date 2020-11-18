@@ -25,6 +25,11 @@
 <body>
 	
 	<?php include 'admin_header.php'; ?>
+	<?php
+		if (!$_SESSION['aid']) {
+			header("Location: admin.php"); 
+		}
+	?>
 
     <section class="banner-area organic-breadcrumb">
 		<div class="container">
