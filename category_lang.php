@@ -227,9 +227,9 @@
 						if(!$conn){
 							die("Connection Failed". mysqli_connect_error());
 						}
-						if ($_REQUEST['category']) {
-							$cat = $_REQUEST['category'];
-							$sql = "SELECT * FROM `books details` WHERE book_genre LIKE '%$cat%'";
+						if ($_REQUEST['language']) {
+							$lan = $_REQUEST['language'];
+							$sql = "SELECT * FROM `books details` WHERE book_language LIKE '%$lan%'";
 							$result = mysqli_query($conn, $sql);
 							if (mysqli_num_rows($result) > 0) {
 							
@@ -240,12 +240,12 @@
 								<div class="product-details">
 									<h6>'.$row["book_title"].'</h6>
 									<div class="price">
-										<h6>Rs.',$row["book_price"],'</h6>
+										<h6>Rs.',$row["book_price"] - rand(50,200),'</h6>
 										<h6 class="l-through">Rs.'.$row["book_price"].'</h6>
 									</div>
 									<div class="prd-bottom">
 
-										<a href="add_cart.php?book_id='.$row["book_id"].'" class="social-info">
+										<a href="" class="social-info">
 											<span class="ti-bag"></span>
 											<p class="hover-text">add to bag</p>
 										</a>
@@ -257,7 +257,7 @@
 											<span class="lnr lnr-sync"></span>
 											<p class="hover-text">compare</p>
 										</a> -->
-										<a href="single-product.php?book_id='.$row["book_id"].'" class="social-info">
+										<a href="single-product.php" class="social-info">
 											<span class="lnr lnr-move"></span>
 											<p class="hover-text">view more</p>
 										</a>
