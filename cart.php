@@ -122,7 +122,7 @@
                                 } # End of while
                             } # End of if
                             else{
-                                echo "0 Results !!";
+                                echo "<h2>0 Results !!</h2>";
                             }
                                 
                             echo  '<tr class="bottom_button">

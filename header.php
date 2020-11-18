@@ -77,18 +77,20 @@ if (isset($_SESSION['uid'])) {
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
 							<li class="nav-item"><a class="nav-link" href="category.php?category=">Category</a></li>
-							<li class="nav-item submenu dropdown">
+							
 									<?php 
 									if (isset($_SESSION['uid'])) {
-										echo '<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+										echo '<li class="nav-item submenu dropdown">
+											<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 			aria-expanded="false">Shop</a>
 											<ul class="dropdown-menu">
 											<li class="nav-item"><a class="nav-link" href="cart.php">Shopping Cart</a></li>
 											<li class="nav-item"><a class="nav-link" href="tracking.php">Tracking</a></li>
-											</ul>';
+											</ul>
+											</li>';
 									}
 									?>
-							</li>
+
 							<?php
 							if(!isset($_SESSION['uid'])){
 								echo "<li class='nav-item'><a class='nav-link' href='login.php'>Login</a></li>";
