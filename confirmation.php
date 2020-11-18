@@ -103,6 +103,9 @@
 						</thead>
 						<tbody>
 						<?php
+							if (!isset($_SESSION['uid'])) {
+								echo '<script> location.replace("login.php"); </script>';
+							}
 						 	$servername = "localhost";
                             $username = "root";
                             $password = "";

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +35,11 @@
 <body>
 	
 	<?php include 'admin_header.php'; ?>
+	<?php
+		if (!$_SESSION['aid']) {
+			header("Location: admin.php"); 
+		}
+	?>
 
     <section class="banner-area organic-breadcrumb">
 		<div class="container">
