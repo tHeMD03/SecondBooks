@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
+<?php
+
+if (isset($_POST['login'])) {
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "booksdb";
+
+	$email = $_POST['email'];
+	$login_password = $_POST['pswd'];
+
+	$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+	if(!$conn){
+		die("Connection Failed". mysqli_connect_error());
+	}
+
+	$sql = "SELECT user_id,first_name,user_password FROM users WHERE user_email='$email';";
+	$result = mysqli_query($conn, $sql);
+
+	if($row = mysqli_fetch_assoc($result)){
+		if($login_password == $row['user_password']){
+			session_start();
+			$_SESSION['uid'] = $row['user_id'];
+			$_SESSION['uname'] = $row['first_name'];
+			header("Location: index.php");
+		}else{
+			echo "<script> window.alert('Incorrect Email Or Password') </script>";
+		}
+	}
+}
+
+?>
+
+
 <head>
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,11 +63,12 @@
 	<link rel="stylesheet" href="css/nouislider.min.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/main.css">
+	<script src="js/loginvalidation.js" type="text/javascript"></script>
 </head>
 
 <body>
 
-        <?php include 'header.php'; ?>
+    <?php include 'header.php'; ?>
 	<!-- End Header Area -->
 
 	<!-- Start Banner Area -->
@@ -68,21 +104,23 @@
 				<div class="col-lg-6">
 					<div class="login_form_inner">
 						<h3>Log in to enter</h3>
-						<form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+						<form class="row login_form" action="login.php" method="post" id="contactForm">
 							<div class="col-md-12 form-group">
-								<input type="email" class="form-control" id="name" name="email" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'">
+								<input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" onblur="emailValidate()" required>
+								<small id="emailerror"></small>
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="password" class="form-control" id="password" name="pswd" placeholder="Password" onblur="passValidate()" required>
+								<small id="passerror"></small>
 							</div>
-							<div class="col-md-12 form-group">
+<!-- 							<div class="col-md-12 form-group">
 								<div class="creat_account">
 									<input type="checkbox" id="f-option2" name="selector">
 									<label for="f-option2">Keep me logged in</label>
 								</div>
-							</div>
+							</div> -->
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">Log In</button>
+								<input type="submit" name="login" value="Login" class="primary-btn">
 								<a href="forgot_password.php">Forgot Password?</a>
 							</div>
 						</form>

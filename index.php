@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
+<?php
+//session_start();
+?>
+
 <head>
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -48,7 +52,7 @@
 						<div class="row single-slide align-items-center d-flex">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
-									<h1>Nike New <br>Collection!</h1>
+									<h1>Books New <br>Collection!</h1>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
 										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
 									<div class="add-bag d-flex align-items-center">
@@ -57,17 +61,17 @@
 									</div>
 								</div>
 							</div>
-							<!-- <div class="col-lg-7">
+							<div class="col-lg-7">
 								<div class="banner-img">
-									<img class="img-fluid" src="img/banner/banner-img.png" alt="">
+									<img class="img-fluid" width=200 height=200 src="upload/books/default.jpg" alt="">
 								</div>
-							</div> -->
+							</div>
 						</div>
 						<!-- single-slide -->
 						<div class="row single-slide">
 							<div class="col-lg-5">
 								<div class="banner-content">
-									<h1>Nike New <br>Collection!</h1>
+									<h1>Book New <br>Collection!</h1>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
 										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
 									<div class="add-bag d-flex align-items-center">
@@ -76,11 +80,11 @@
 									</div>
 								</div>
 							</div>
-							<!-- <div class="col-lg-7">
+							<div class="col-lg-7">
 								<div class="banner-img">
-									<img class="img-fluid" src="img/banner/banner-img.png" alt="">
+									<img class="img-fluid" width=300 height=300 src="upload/books/default.jpg" alt="">
 								</div>
-							</div> -->
+							</div>
 						</div>
 					</div>
 				</div>
@@ -223,40 +227,62 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
-						<div class="single-product">
-							<img class="img-fluid" src="img/product/p1.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
+					<?php
 
-									<a href="" class="social-info">
-										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
-									</a>
-									<!-- <a href="" class="social-info">
-										<span class="lnr lnr-heart"></span>
-										<p class="hover-text">Wishlist</p>
-									</a> -->
-									<!-- <a href="" class="social-info">
-										<span class="lnr lnr-sync"></span>
-										<p class="hover-text">compare</p>
-									</a> -->
-									<a href="single-product.php" class="social-info">
-										<span class="lnr lnr-move"></span>
-										<p class="hover-text">view more</p>
-									</a>
+					$servername = "localhost";
+					$username = "root";
+					$password = "";
+					$dbname = "booksdb";
+
+					$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+					if(!$conn){
+						die("Connection Failed". mysqli_connect_error());
+					}
+
+					$sql = "SELECT * FROM `books details`";
+					$result = mysqli_query($conn, $sql);
+
+					if (mysqli_num_rows($result) > 0) {
+						while ($row = mysqli_fetch_assoc($result)) {
+						
+							echo '<div class="col-lg-3 col-md-6">
+							<div class="single-product">
+								<img class="img-fluid" src="upload/books/'.$row["book_id"].'.jpg" alt="">
+								<div class="product-details">
+									<h6>addidas New Hammer sole
+										for Sports person</h6>
+									<div class="price">
+										<h6>Rs.'.$row["book_price"].'</h6>
+										<h6 class="l-through">Rs.'.$row["book_price"].'</h6>
+									</div>
+									<div class="prd-bottom">
+
+										<a href="add_cart.php?book_id='.$row["book_id"].'" class="social-info">
+											<span class="ti-bag"></span>
+											<p class="hover-text">add to bag</p>
+										</a>
+										<!-- <a href="" class="social-info">
+											<span class="lnr lnr-heart"></span>
+											<p class="hover-text">Wishlist</p>
+										</a> -->
+										<!-- <a href="" class="social-info">
+											<span class="lnr lnr-sync"></span>
+											<p class="hover-text">compare</p>
+										</a> -->
+										<a href="single-product.php?book_id='.$row["book_id"].'" class="social-info">
+											<span class="lnr lnr-move"></span>
+											<p class="hover-text">view more</p>
+										</a>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
+						</div>';
+						}
+					}
+					?>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<!-- <div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p2.jpg" alt="">
 							<div class="product-details">
@@ -271,7 +297,7 @@
 									<a href="" class="social-info">
 										<span class="ti-bag"></span>
 										<p class="hover-text">add to bag</p>
-									</a>
+									</a> -->
 									<!-- <a href="" class="social-info">
 										<span class="lnr lnr-heart"></span>
 										<p class="hover-text">Wishlist</p>
@@ -280,16 +306,16 @@
 										<span class="lnr lnr-sync"></span>
 										<p class="hover-text">compare</p>
 									</a> -->
-									<a href="single-product.php" class="social-info">
+									<!-- <a href="single-product.php" class="social-info">
 										<span class="lnr lnr-move"></span>
 										<p class="hover-text">view more</p>
 									</a>
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<!-- <div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p3.jpg" alt="">
 							<div class="product-details">
@@ -303,7 +329,7 @@
 									<a href="" class="social-info">
 										<span class="ti-bag"></span>
 										<p class="hover-text">add to bag</p>
-									</a>
+									</a> -->
 									<!-- <a href="" class="social-info">
 										<span class="lnr lnr-heart"></span>
 										<p class="hover-text">Wishlist</p>
@@ -312,16 +338,16 @@
 										<span class="lnr lnr-sync"></span>
 										<p class="hover-text">compare</p>
 									</a> -->
-									<a href="single-product.php" class="social-info">
+									<!-- <a href="single-product.php" class="social-info">
 										<span class="lnr lnr-move"></span>
 										<p class="hover-text">view more</p>
 									</a>
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<!-- <div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p4.jpg" alt="">
 							<div class="product-details">
@@ -336,7 +362,7 @@
 									<a href="" class="social-info">
 										<span class="ti-bag"></span>
 										<p class="hover-text">add to bag</p>
-									</a>
+									</a> -->
 									<!-- <a href="" class="social-info">
 										<span class="lnr lnr-heart"></span>
 										<p class="hover-text">Wishlist</p>
@@ -345,16 +371,16 @@
 										<span class="lnr lnr-sync"></span>
 										<p class="hover-text">compare</p>
 									</a> -->
-									<a href="single-product.php" class="social-info">
+									<!-- <a href="single-product.php" class="social-info">
 										<span class="lnr lnr-move"></span>
 										<p class="hover-text">view more</p>
 									</a>
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<!-- <div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p5.jpg" alt="">
 							<div class="product-details">
@@ -369,7 +395,7 @@
 									<a href="" class="social-info">
 										<span class="ti-bag"></span>
 										<p class="hover-text">add to bag</p>
-									</a>
+									</a> -->
 									<!-- <a href="" class="social-info">
 										<span class="lnr lnr-heart"></span>
 										<p class="hover-text">Wishlist</p>
@@ -378,16 +404,16 @@
 										<span class="lnr lnr-sync"></span>
 										<p class="hover-text">compare</p>
 									</a> -->
-									<a href="single-product.php" class="social-info">
+									<!-- <a href="single-product.php" class="social-info">
 										<span class="lnr lnr-move"></span>
 										<p class="hover-text">view more</p>
 									</a>
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<!-- <div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p6.jpg" alt="">
 							<div class="product-details">
@@ -402,7 +428,7 @@
 									<a href="" class="social-info">
 										<span class="ti-bag"></span>
 										<p class="hover-text">add to bag</p>
-									</a>
+									</a> -->
 									<!-- <a href="" class="social-info">
 										<span class="lnr lnr-heart"></span>
 										<p class="hover-text">Wishlist</p>
@@ -411,16 +437,16 @@
 										<span class="lnr lnr-sync"></span>
 										<p class="hover-text">compare</p>
 									</a> -->
-									<a href="single-product.php" class="social-info">
+									<!-- <a href="single-product.php" class="social-info">
 										<span class="lnr lnr-move"></span>
 										<p class="hover-text">view more</p>
 									</a>
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<!-- <div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p7.jpg" alt="">
 							<div class="product-details">
@@ -435,7 +461,7 @@
 									<a href="" class="social-info">
 										<span class="ti-bag"></span>
 										<p class="hover-text">add to bag</p>
-									</a>
+									</a> -->
 									<!-- <a href="" class="social-info">
 										<span class="lnr lnr-heart"></span>
 										<p class="hover-text">Wishlist</p>
@@ -444,16 +470,16 @@
 										<span class="lnr lnr-sync"></span>
 										<p class="hover-text">compare</p>
 									</a> -->
-									<a href="single-product.php" class="social-info">
+									<!-- <a href="single-product.php" class="social-info">
 										<span class="lnr lnr-move"></span>
 										<p class="hover-text">view more</p>
 									</a>
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<!-- <div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p8.jpg" alt="">
 							<div class="product-details">
@@ -468,7 +494,7 @@
 									<a href="" class="social-info">
 										<span class="ti-bag"></span>
 										<p class="hover-text">add to bag</p>
-									</a>
+									</a> -->
 									<!-- <a href="" class="social-info">
 										<span class="lnr lnr-heart"></span>
 										<p class="hover-text">Wishlist</p>
@@ -477,13 +503,13 @@
 										<span class="lnr lnr-sync"></span>
 										<p class="hover-text">compare</p>
 									</a> -->
-									<a href="single-product.php" class="social-info">
+									<!-- <a href="single-product.php" class="social-info">
 										<span class="lnr lnr-move"></span>
 										<p class="hover-text">view more</p>
 									</a>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -503,40 +529,51 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
-						<div class="single-product">
-							<img class="img-fluid" src="img/product/p6.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
+					<?php
 
-									<a href="" class="social-info">
-										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
-									</a>
-									<!-- <a href="" class="social-info">
-										<span class="lnr lnr-heart"></span>
-										<p class="hover-text">Wishlist</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-sync"></span>
-										<p class="hover-text">compare</p>
-									</a> -->
-									<a href="" class="social-info">
-										<span class="lnr lnr-move"></span>
-										<p class="hover-text">view more</p>
-									</a>
+					$sql = "SELECT * FROM `books details`";
+					$result = mysqli_query($conn, $sql);
+
+					if (mysqli_num_rows($result) > 0) {
+						while ($row = mysqli_fetch_assoc($result)) {
+						
+							echo '<div class="col-lg-3 col-md-6">
+							<div class="single-product">
+								<img class="img-fluid" src="upload/books/'.$row["book_id"].'.jpg" alt="">
+								<div class="product-details">
+									<h6>addidas New Hammer sole
+										for Sports person</h6>
+									<div class="price">
+										<h6>Rs.'.$row["book_price"].'</h6>
+										<h6 class="l-through">Rs.'.$row["book_price"].'</h6>
+									</div>
+									<div class="prd-bottom">
+
+										<a href="add_cart.php?book_id='.$row["book_id"].'" class="social-info">
+											<span class="ti-bag"></span>
+											<p class="hover-text">add to bag</p>
+										</a>
+										<!-- <a href="" class="social-info">
+											<span class="lnr lnr-heart"></span>
+											<p class="hover-text">Wishlist</p>
+										</a> -->
+										<!-- <a href="" class="social-info">
+											<span class="lnr lnr-sync"></span>
+											<p class="hover-text">compare</p>
+										</a> -->
+										<a href="single-product.php?book_id='.$row["book_id"].'" class="social-info">
+											<span class="lnr lnr-move"></span>
+											<p class="hover-text">view more</p>
+										</a>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
+						</div>';
+						}
+					}
+					?>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<!-- <div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p8.jpg" alt="">
 							<div class="product-details">
@@ -551,7 +588,7 @@
 									<a href="" class="social-info">
 										<span class="ti-bag"></span>
 										<p class="hover-text">add to bag</p>
-									</a>
+									</a> -->
 									<!-- <a href="" class="social-info">
 										<span class="lnr lnr-heart"></span>
 										<p class="hover-text">Wishlist</p>
@@ -560,211 +597,15 @@
 										<span class="lnr lnr-sync"></span>
 										<p class="hover-text">compare</p>
 									</a> -->
-									<a href="" class="social-info">
-										<span class="lnr lnr-move"></span>
-										<p class="hover-text">view more</p>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
-						<div class="single-product">
-							<img class="img-fluid" src="img/product/p3.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-
-									<a href="" class="social-info">
-										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
-									</a>
 									<!-- <a href="" class="social-info">
-										<span class="lnr lnr-heart"></span>
-										<p class="hover-text">Wishlist</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-sync"></span>
-										<p class="hover-text">compare</p>
-									</a> -->
-									<a href="" class="social-info">
 										<span class="lnr lnr-move"></span>
 										<p class="hover-text">view more</p>
 									</a>
 								</div>
 							</div>
 						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
-						<div class="single-product">
-							<img class="img-fluid" src="img/product/p5.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-
-									<a href="" class="social-info">
-										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
-									</a>
-									<!-- <a href="" class="social-info">
-										<span class="lnr lnr-heart"></span>
-										<p class="hover-text">Wishlist</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-sync"></span>
-										<p class="hover-text">compare</p>
-									</a> -->
-									<a href="" class="social-info">
-										<span class="lnr lnr-move"></span>
-										<p class="hover-text">view more</p>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
-						<div class="single-product">
-							<img class="img-fluid" src="img/product/p1.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-
-									<a href="" class="social-info">
-										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
-									</a>
-									<!-- <a href="" class="social-info">
-										<span class="lnr lnr-heart"></span>
-										<p class="hover-text">Wishlist</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-sync"></span>
-										<p class="hover-text">compare</p>
-									</a> -->
-									<a href="" class="social-info">
-										<span class="lnr lnr-move"></span>
-										<p class="hover-text">view more</p>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
-						<div class="single-product">
-							<img class="img-fluid" src="img/product/p4.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-
-									<a href="" class="social-info">
-										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
-									</a>
-									<!-- <a href="" class="social-info">
-										<span class="lnr lnr-heart"></span>
-										<p class="hover-text">Wishlist</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-sync"></span>
-										<p class="hover-text">compare</p>
-									</a> -->
-									<a href="" class="social-info">
-										<span class="lnr lnr-move"></span>
-										<p class="hover-text">view more</p>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
-						<div class="single-product">
-							<img class="img-fluid" src="img/product/p1.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-
-									<a href="" class="social-info">
-										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
-									</a>
-									<!-- <a href="" class="social-info">
-										<span class="lnr lnr-heart"></span>
-										<p class="hover-text">Wishlist</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-sync"></span>
-										<p class="hover-text">compare</p>
-									</a> -->
-									<a href="" class="social-info">
-										<span class="lnr lnr-move"></span>
-										<p class="hover-text">view more</p>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
-						<div class="single-product">
-							<img class="img-fluid" src="img/product/p8.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-
-									<a href="" class="social-info">
-										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
-									</a>
-									<!-- <a href="" class="social-info">
-										<span class="lnr lnr-heart"></span>
-										<p class="hover-text">Wishlist</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-sync"></span>
-										<p class="hover-text">compare</p>
-									</a> -->
-									<a href="" class="social-info">
-										<span class="lnr lnr-move"></span>
-										<p class="hover-text">view more</p>
-									</a>
-								</div>
-							</div>
-						</div>
+					</div> -->
+					
 					</div>
 				</div>
 			</div>
@@ -809,14 +650,13 @@
 					<div class="active-exclusive-product-slider">
 						<!-- single exclusive carousel -->
 						<div class="single-exclusive-slider">
-							<img class="img-fluid" src="img/product/e-p1.png" alt="">
+							<img class="img-fluid" width=200 height=200 src="upload/books/default.jpg" alt="">
 							<div class="product-details">
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>Rs.500</h6>
+									<h6 class="l-through">Rs.700</h6>
 								</div>
-								<h4>addidas New Hammer sole
-									for Sports person</h4>
+								<h4>Books</h4>
 								<div class="add-bag d-flex align-items-center justify-content-center">
 									<a class="add-btn" href=""><span class="ti-bag"></span></a>
 									<span class="add-text text-uppercase">Add to Bag</span>
@@ -825,14 +665,13 @@
 						</div>
 						<!-- single exclusive carousel -->
 						<div class="single-exclusive-slider">
-							<img class="img-fluid" src="img/product/e-p1.png" alt="">
+							<img class="img-fluid" width=200 height=200 src="upload/books/default.jpg" alt="">
 							<div class="product-details">
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>Rs.500</h6>
+									<h6 class="l-through">Rs.700</h6>
 								</div>
-								<h4>addidas New Hammer sole
-									for Sports person</h4>
+								<h4>Books</h4>
 								<div class="add-bag d-flex align-items-center justify-content-center">
 									<a class="add-btn" href=""><span class="ti-bag"></span></a>
 									<span class="add-text text-uppercase">Add to Bag</span>
@@ -888,77 +727,77 @@
 					<div class="row">
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r1.jpg" alt=""></a>
+								<a href="category.php?category="><img class="img-fluid" width=200 height=200 src="upload/books/default.jpg" alt=""></a>
 								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
+									<a href="category.php?category=" class="title">College Books</a>
 									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
+										<h6>Rs.189</h6>
+										<h6 class="l-through">Rs.210</h6>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r2.jpg" alt=""></a>
+								<a href="category.php?category="><img class="img-fluid" width=200 height=200 src="upload/books/default1.jpeg" alt=""></a>
 								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
+									<a href="category.php?category=" class="title">School Books</a>
 									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
+										<h6>Rs.189</h6>
+										<h6 class="l-through">Rs.210</h6>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r3.jpg" alt=""></a>
+								<a href="category.php?category="><img class="img-fluid" width=200 height=200 src="upload/books/default3.jpg" alt=""></a>
 								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
+									<a href="category.php?category=" class="title">College Books</a>
 									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
+										<h6>Rs.189</h6>
+										<h6 class="l-through">Rs.210</h6>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r5.jpg" alt=""></a>
+								<a href="category.php?category="><img class="img-fluid" width=200 height=200 src="upload/books/default1.jpeg" alt=""></a>
 								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
+									<a href="category.php?category=" class="title">School Books</a>
 									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
+										<h6>Rs.189</h6>
+										<h6 class="l-through">Rs.210</h6>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r6.jpg" alt=""></a>
+								<a href="category.php?category="><img class="img-fluid" width=200 height=200 src="upload/books/default3.jpg" alt=""></a>
 								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
+									<a href="category.php?category=" class="title">College Books</a>
 									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
+										<h6>Rs.189</h6>
+										<h6 class="l-through">Rs.210</h6>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r7.jpg" alt=""></a>
+								<a href="category.php?category="><img class="img-fluid" width=200 height=200 src="upload/books/default1.jpeg" alt=""></a>
 								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
+									<a href="category.php?category=" class="title">School Books</a>
 									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
+										<h6>Rs.189</h6>
+										<h6 class="l-through">Rs.210</h6>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6">
+			<!-- 			<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="single-related-product d-flex">
 								<a href="#"><img src="img/r9.jpg" alt=""></a>
 								<div class="desc">
@@ -995,14 +834,14 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-3">
+				</div> -->
+				<!-- <div class="col-lg-3">
 					<div class="ctg-right">
 						<a href="#" target="_blank">
 							<img class="img-fluid d-block mx-auto" src="img/category/c5.jpg" alt="">
 						</a>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>

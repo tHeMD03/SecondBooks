@@ -102,40 +102,44 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									<p>Pixelstore fresh Blackberry</p>
-								</td>
-								<td>
-									<h5>x 02</h5>
-								</td>
-								<td>
-									<p>$720.00</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p>Pixelstore fresh Blackberry</p>
-								</td>
-								<td>
-									<h5>x 02</h5>
-								</td>
-								<td>
-									<p>$720.00</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p>Pixelstore fresh Blackberry</p>
-								</td>
-								<td>
-									<h5>x 02</h5>
-								</td>
-								<td>
-									<p>$720.00</p>
-								</td>
-							</tr>
-							<tr>
+						<?php
+						 	$servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "booksdb";
+
+                            $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+                            if(!$conn){
+                                die("Connection Failed". mysqli_connect_error());
+                            }
+
+                            $u_id = $_SESSION['uid'];
+
+                            $sql = "SELECT * FROM cart WHERE user_id='$u_id';";
+                            $result = mysqli_query($conn, $sql);
+
+                            $sub_total = 0;
+                            $i = 1;
+							
+							if (mysqli_num_rows($result)) {
+								while ($row = mysqli_fetch_assoc($result)) {
+									echo '<tr>
+									<td>
+									<p>Book ',$i,'</p>
+									</td>
+									<td>
+									<h5>x'.$row["cart_total"].'</h5>
+									</td>
+									<td>
+									<p>Rs.'.$row["price_total"].'</p>
+									</td>
+									</tr>';
+									$sub_total = $sub_total + $row['price_total'];
+								}
+							}
+
+							echo '
 								<td>
 									<h4>Subtotal</h4>
 								</td>
@@ -143,10 +147,10 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p>$2160.00</p>
+									<p>Rs.'.$sub_total.'</p>
 								</td>
 							</tr>
-							<!-- <tr>
+							<tr>
 								<td>
 									<h4>Shipping</h4>
 								</td>
@@ -154,9 +158,9 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p>Flat rate: $50.00</p>
+									<p>Flat rate: Rs.50</p>
 								</td>
-							</tr> -->
+							</tr>
 							<tr>
 								<td>
 									<h4>Total</h4>
@@ -165,11 +169,13 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p>$2210.00</p>
+									<p>Rs.',$sub_total + 50,'</p>
 								</td>
-							</tr>
+							</tr>';
+						?>
 						</tbody>
 					</table>
+					<a style="float:right;" class="primary-btn" href="clear_cart.php">Make a Payment</a>
 				</div>
 			</div>
 		</div>
