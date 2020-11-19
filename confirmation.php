@@ -56,53 +56,8 @@
 		<div class="container">
 			<h3 class="title_confirmation">Thank you. Your order has been received.</h3>
 			<div class="row order_d_inner">
-				<div class="col-lg-4">
-					<div class="details_item">
-						<h4>Order Info</h4>
-						<ul class="list">
-							<li><a href="#"><span>Order number</span> : 60235</a></li>
-							<li><a href="#"><span>Date</span> : Los Angeles</a></li>
-							<li><a href="#"><span>Total</span> : USD 2210</a></li>
-							<li><a href="#"><span>Payment method</span> : Check payments</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="details_item">
-						<h4>Billing Address</h4>
-						<ul class="list">
-							<li><a href="#"><span>Street</span> : 56/8</a></li>
-							<li><a href="#"><span>City</span> : Los Angeles</a></li>
-							<li><a href="#"><span>Country</span> : United States</a></li>
-							<li><a href="#"><span>Postcode </span> : 36952</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="details_item">
-						<h4>Shipping Address</h4>
-						<ul class="list">
-							<li><a href="#"><span>Street</span> : 56/8</a></li>
-							<li><a href="#"><span>City</span> : Los Angeles</a></li>
-							<li><a href="#"><span>Country</span> : United States</a></li>
-							<li><a href="#"><span>Postcode </span> : 36952</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="order_details_table">
-				<h2>Order Details</h2>
-				<div class="table-responsive">
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Product</th>
-								<th scope="col">Quantity</th>
-								<th scope="col">Total</th>
-							</tr>
-						</thead>
-						<tbody>
-						<?php
+				<?php
+
 							if (!isset($_SESSION['uid'])) {
 								echo '<script> location.replace("login.php"); </script>';
 							}
@@ -123,13 +78,81 @@
                             $result = mysqli_query($conn, $sql);
 
                             $sub_total = 0;
-                            $i = 1;
+                            if (mysqli_num_rows($result)) {
+								while ($row = mysqli_fetch_assoc($result)) {
+									$sub_total = $sub_total + $row['price_total'];
+								}
+
+									$sql2 = "SELECT * FROM users WHERE user_id='$u_id';";
+									$result2 = mysqli_query($conn, $sql2);
+									$row2 = mysqli_fetch_assoc($result2);
+
+									echo '<div class="col-lg-4">
+										<div class="details_item">
+											<h4>Order Info</h4>
+											<ul class="list">
+												<li><a href="#"><span>Order number</span> : 60235</a></li>
+												<li><a href="#"><span>Date</span> : '.$row2["user_city"].'</a></li>
+												<li><a href="#"><span>Total</span> : Rs.',$sub_total + 50,'</a></li>
+												<li><a href="#"><span>Payment method</span> : Check payments</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="details_item">
+											<h4>Billing Address</h4>
+											<ul class="list">
+												<li><a href="#"><span>Street</span> : 56/8</a></li>
+												<li><a href="#"><span>City</span> : '.$row2["user_city"].'</a></li>
+												<li><a href="#"><span>Country</span> : US</a></li>
+												<li><a href="#"><span>Postcode </span> :'.$row2["user_pincode"].'</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="details_item">
+											<h4>Shipping Address</h4>
+											<ul class="list">
+												<li><a href="#"><span>Street</span> : 56/8</a></li>
+												<li><a href="#"><span>City</span> : '.$row2["user_city"].'</a></li>
+												<li><a href="#"><span>Country</span> : US</a></li>
+												<li><a href="#"><span>Postcode </span> :'.$row2["user_pincode"].'</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="order_details_table">
+									<h2>Order Details</h2>
+									<div class="table-responsive">
+										<table class="table">
+											<thead>
+												<tr>
+													<th scope="col">Product</th>
+													<th scope="col">Quantity</th>
+													<th scope="col">Total</th>
+												</tr>
+											</thead>
+											<tbody>';
+									}
+
+                            // $sub_total = 0;
+
+							$sql = "SELECT * FROM cart WHERE user_id='$u_id';";
+                            $result = mysqli_query($conn, $sql);
 							
 							if (mysqli_num_rows($result)) {
 								while ($row = mysqli_fetch_assoc($result)) {
+
+									$b_id=$row['book_id'];
+
+                                    $sql1 = "SELECT * FROM `books details` WHERE 
+                                           	book_id='$b_id';";
+                                    $result1 = mysqli_query($conn, $sql1);
+                                    $row1 = mysqli_fetch_assoc($result1);
+
 									echo '<tr>
 									<td>
-									<p>Book ',$i,'</p>
+									<p>'.$row1["book_title"].'</p>
 									</td>
 									<td>
 									<h5>x'.$row["cart_total"].'</h5>
@@ -138,7 +161,7 @@
 									<p>Rs.'.$row["price_total"].'</p>
 									</td>
 									</tr>';
-									$sub_total = $sub_total + $row['price_total'];
+									// $sub_total = $sub_total + $row['price_total'];
 								}
 							}
 
