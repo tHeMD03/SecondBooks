@@ -82,10 +82,18 @@
                                 $sub_total = 0; 
 
                                 $sql1 = "SELECT * FROM cart WHERE user_id ='$u_id';";
-                                $result = mysqli_query($conn, $sql1);
+                                $result1 = mysqli_query($conn, $sql1);
 
                                 if (mysqli_num_rows($result) > 0) {
-                                    while ($row1 = mysqli_fetch_assoc($result)) {
+                                    while ($row1 = mysqli_fetch_assoc($result1)) {
+
+                                        $b_id=$row1['book_id'];
+
+                                        $sql = "SELECT * FROM `books details` WHERE 
+                                                book_id='$b_id';";
+                                        $result = mysqli_query($conn, $sql);
+                                        $row = mysqli_fetch_assoc($result);
+
                                         echo '<tr>
                                             <td>
                                                 <div class="media">
@@ -93,7 +101,7 @@
                                                         <img width=75 height=100 src="upload/books/'.$row1["book_id"].'.jpg" alt="">
                                                     </div>
                                                     <div class="media-body">
-                                                        <p>BOOKs</p>
+                                                        <p>'.$row["book_title"].'</p>
                                                     </div>
                                                 </div>
                                             </td>
