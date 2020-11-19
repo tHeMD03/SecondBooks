@@ -76,9 +76,9 @@
 								<input type="password" class="form-control password" id="cpassword" name="confpassword" placeholder="Confirm Password" 
 								onblur="passValidate()" required>
 							</div>
-							<div class="col-md-12 form-group">
+							<!-- <div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="utype" name="utype" placeholder="Enter User Type" required>
-                            </div>
+                            </div> -->
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="address" name="address" placeholder="Enter your address" required>
                             </div>

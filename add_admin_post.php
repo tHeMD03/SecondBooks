@@ -71,7 +71,7 @@ if(isset($_POST['submit'])){
 	    else
 	      {
 		  copy($_FILES["file"]["tmp_name"],"upload/admin/" . $filename.'.jpg');
-	      header("Location: add_user.php");
+	      header("Location: add_admin.php");
 	      }
 	}
 	else

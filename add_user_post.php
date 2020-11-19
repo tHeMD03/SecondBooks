@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
 	$email = $_POST['email'];
 	$phone = $_POST['phone'];
 	$user_password = $_POST['confpassword'];
-	$user_type = $_POST['utype'];
+	// $user_type = $_POST['utype'];
 	$user_address = $_POST['address'];
 	$city = $_POST['city'];
 	$user_pincode = $_POST['pincode'];
@@ -31,8 +31,7 @@ if(isset($_POST['submit'])){
 	// 	$sql = "INSERT INTO `admin`(`admin_name`, `admin_email`, `admin_password`, `admin_id`) VALUES ('$firstname','$email','$user_password', '$admin_id')"
 	// }else{}
 
-	$sql = "INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `user_email`, `user_mobile`, `user_password`, `user_type`, `user_address`, `user_city`, `user_pincode`, `sec_que_1`, `sec_que_2`) VALUES (NULL, '$firstname', '$lastname', '$email', '$phone', '$user_password', 
-		'$user_type', '$user_address', '$city', '$user_pincode', '$sec_que_1', '$sec_que_2');";
+	$sql = "INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `user_email`, `user_mobile`, `user_password`, `user_address`, `user_city`, `user_pincode`, `sec_que_1`, `sec_que_2`) VALUES (NULL, '$firstname', '$lastname', '$email', '$phone', '$user_password', '$user_address', '$city', '$user_pincode', '$sec_que_1', '$sec_que_2');";
 
 	if (mysqli_query($conn, $sql)) {
 		
