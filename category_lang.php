@@ -212,16 +212,8 @@
 					<div class="row">
 						<?php
 
-						$servername = "localhost";
-						$username = "root";
-						$password = "";
-						$dbname = "booksdb";
-
-						$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-						if(!$conn){
-							die("Connection Failed". mysqli_connect_error());
-						}
+						require "db_connection.php";
+						
 						if ($_REQUEST['language']) {
 							$lan = $_REQUEST['language'];
 							$sql = "SELECT * FROM `books details` WHERE book_language LIKE '%$lan%'";

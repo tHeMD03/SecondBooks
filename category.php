@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
-<?php
-
-
-?>
-
 <head>
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -217,16 +212,8 @@
 					<div class="row">
 						<?php
 
-						$servername = "localhost";
-						$username = "root";
-						$password = "";
-						$dbname = "booksdb";
-
-						$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-						if(!$conn){
-							die("Connection Failed". mysqli_connect_error());
-						}
+						require "db_connection.php";
+						
 						if ($_REQUEST['category']) {
 							$cat = $_REQUEST['category'];
 							$sql = "SELECT * FROM `books details` WHERE book_genre LIKE '%$cat%'";

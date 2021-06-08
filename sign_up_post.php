@@ -3,33 +3,18 @@ session_start();
 
 if(isset($_POST['submit'])){
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "booksdb";
+	require "db_connection.php";
 
 	$firstname = $_POST['firstname'];
 	$lastname = $_POST['lastname'];
 	$email = $_POST['email'];
 	$phone = $_POST['phone'];
-	if ($create_password = $_POST['crtpassword'] == $confirm_password = $_POST['confpassword']) {
-		$user_password = $_POST['confpassword'];
-	}else{
-		echo "Password does'nt match!!! and password set as default !!";
-		$user_password = "12345";
-	}
+	$user_password = $_POST['confpassword'];
 	$user_address = $_POST['address'];
 	$city = $_POST['city'];
 	$user_pincode = $_POST['pincode'];
 	$sec_que_1 = $_POST['que1'];
 	$sec_que_2 = $_POST['que2'];
-
-
-	$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-	if (!$conn) {
-		die("Connection Failed !!" . mysqli_connect_error());
-	}
 
 	$sql = "INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `user_email`, `user_mobile`, `user_password`, `user_type`, `user_address`, `user_city`, `user_pincode`, `sec_que_1`, `sec_que_2`) VALUES (NULL, '$firstname', '$lastname', '$email', '$phone', '$user_password', '0', '$user_address', '$city', '$user_pincode', '$sec_que_1', '$sec_que_2');";
 

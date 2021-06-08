@@ -4,19 +4,11 @@
 <?php
 
 if (isset($_POST['login'])) {
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "booksdb";
-
-	$email = $_POST['email'];
+  
+  require "db_connection.php";
+	
+  $email = $_POST['email'];
 	$login_password = $_POST['pswd'];
-
-	$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-	if(!$conn){
-		die("Connection Failed". mysqli_connect_error());
-	}
 
 	$sql = "SELECT * FROM admin WHERE admin_email='$email';";
 	$result = mysqli_query($conn, $sql);

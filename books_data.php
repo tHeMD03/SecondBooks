@@ -57,16 +57,7 @@
 	<?php
 	if (isset($_SESSION['aid'])) {
 	
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "booksdb";
-
-		$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-		if(!$conn){
-			echo "Connection Failed ". mysqli_connect_error();
-		}
+		require "db_connection.php";
 
 		$sql = "SELECT * FROM `books details`;";
 		$result = mysqli_query($conn, $sql);

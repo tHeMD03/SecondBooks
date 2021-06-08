@@ -57,16 +57,7 @@
 	<!--================Single Product Area =================-->
 	<?php 
 	
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "booksdb";
-
-	$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-if(!$conn){
-	die("Connection failed" . mysqli_connect_error());
-}
+	require "db_connection.php";
 
 	$book_id = $_GET['book_id'];
 
