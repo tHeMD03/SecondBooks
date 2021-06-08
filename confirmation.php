@@ -54,23 +54,15 @@
 	<!--================Order Details Area =================-->
 	<section class="order_details section_gap">
 		<div class="container">
-			<h3 class="title_confirmation">Thank you. Your order has been received.</h3>
+			<h3 class="title_confirmation">Please Confirm Your Order :)</h3>
 			<div class="row order_d_inner">
 				<?php
 
 							if (!isset($_SESSION['uid'])) {
 								echo '<script> location.replace("login.php"); </script>';
 							}
-						 	$servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "booksdb";
-
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-                            if(!$conn){
-                                die("Connection Failed". mysqli_connect_error());
-                            }
+						 	
+						 	require "db_connection.php";
 
                             $u_id = $_SESSION['uid'];
 

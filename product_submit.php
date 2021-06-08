@@ -9,10 +9,8 @@
 
 
     <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "booksdb";
+    
+    require "db_connection.php";
 
 
     $bname = $_POST['bname'];
@@ -27,12 +25,6 @@
     $language = $_POST['language'];
     $author_dec = $_POST['author_dec'];
 
-
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-    if(!$conn){
-      die("Connection failed" . mysqli_connect_error());
-    }
     $sql = "INSERT INTO `books details` (`book_id`, `book_title`, `book_ISBN`, `book_genre`, `book_description`, `author_name`, `book_price`, `book_pages`, `book_dimension`, `book_publisher`, `book_language`, `author_description`) VALUES (NULL, '$bname', '$isbn', '$genre', '$book_dec', '$author_name', '$price', '$page', '$dimention', '$publisher', '$language', '$author_dec');";
     
     if(mysqli_query($conn, $sql)){

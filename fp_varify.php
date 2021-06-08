@@ -1,19 +1,11 @@
 <?php 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "booksdb";
 
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    require "db_connection.php";
 
     $email = $_POST['email'];
     $sec_q_1 = $_POST['sec1'];
     $sec_q_2 = $_POST['sec2'];
     
-
-    if(!$conn){
-        die("Connection failed" . mysqli_connect_error());
-    }
      $sql = "SELECT * FROM users WHERE user_email='$email';";
 
      $result = mysqli_query($conn, $sql);

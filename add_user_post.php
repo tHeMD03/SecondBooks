@@ -3,10 +3,7 @@
 
 if(isset($_POST['submit'])){
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "booksdb";
+	require "db_connection.php";
 
 	$firstname = $_POST['firstname'];
 	$lastname = $_POST['lastname'];
@@ -21,11 +18,6 @@ if(isset($_POST['submit'])){
 	$sec_que_2 = $_POST['que2'];
 
 
-	$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-	if (!$conn) {
-		die("Connection Failed !!" . mysqli_connect_error());
-	}
 	// if ($user_type == '1') {
 	// 	$admin_id = $firstname + string(rand(100,999));
 	// 	$sql = "INSERT INTO `admin`(`admin_name`, `admin_email`, `admin_password`, `admin_id`) VALUES ('$firstname','$email','$user_password', '$admin_id')"

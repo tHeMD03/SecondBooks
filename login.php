@@ -4,21 +4,13 @@
 <?php
 
 if (isset($_POST['login'])) {
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "booksdb";
+	
+	require "db_connection.php";
 
 	$email = $_POST['email'];
 	$login_password = $_POST['pswd'];
 
-	$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-	if(!$conn){
-		die("Connection Failed". mysqli_connect_error());
-	}
-
-	$sql = "SELECT user_id,first_name,user_password FROM users WHERE user_email='$email';";
+	$sql = "SELECT user_id,first_name,user_password FROM users WHERE user_email='$email'";
 	$result = mysqli_query($conn, $sql);
 
 	if($row = mysqli_fetch_assoc($result)){
@@ -106,7 +98,7 @@ if (isset($_POST['login'])) {
 						<h3>Log in to enter</h3>
 						<form class="row login_form" action="login.php" method="post" id="contactForm">
 							<div class="col-md-12 form-group">
-								<input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" onblur="emailValidate()" required>
+								<input type="text" class="form-control" id="email" name="email" placeholder="Enter Email" onblur="emailValidate" required>
 								<small id="emailerror"></small>
 							</div>
 							<div class="col-md-12 form-group">

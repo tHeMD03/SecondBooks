@@ -1,16 +1,7 @@
 <?php
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "booksdb";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-if(!$conn){
-	die("Connection Failed". mysqli_connect_error());
-}
+require "db_connection.php";
 
 if (isset($_SESSION['uid'])) {
 	$book_id = $_GET['book_id'];

@@ -3,16 +3,7 @@ session_start();
 
 if (isset($_SESSION['uid'])) {
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "booksdb";
-
-	$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-	if(!$conn){
-		die("Connection Failed". mysqli_connect_error());
-	}
+	require "db_connection.php";
 
 	$cart_total = 0;
 
@@ -75,6 +66,13 @@ if (isset($_SESSION['uid'])) {
 					<!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
+							<li class="nav-item">
+							<div class="col-sm-6" style="border-radius: 50%; padding: 0px; margin-right: -20px">
+							<img src="upload/<?php 
+										if(isset($_SESSION['uid'])){echo $_SESSION['uid'] .'.jpg';}
+										else{echo 'default.jpg';}?>" style=" width: 45px; height: 45px; border-radius: 50%; ">
+							</div>
+							</li>
 							<li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
 							<li class="nav-item"><a class="nav-link" href="category.php?category=">Category</a></li>
 							
@@ -113,13 +111,6 @@ if (isset($_SESSION['uid'])) {
 									<li class="nav-item"><a class="nav-link" href="sign_up.php">Sign up</a></li>
 									<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
 								</ul> -->
-							<li class="nav-item">
-							<div class="col-sm-6" style="">
-							<img src="upload/<?php 
-										if(isset($_SESSION['uid'])){echo $_SESSION['uid'] .'.jpg';}
-										else{echo 'default.jpg';}?>" style=" width: 45px; height: 45px; border-radius: 50%;">
-							</div>
-							</li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 						<?php
